@@ -14,12 +14,13 @@
     {{!--Create a select input, if the type is select--}}
     {{#if isSelect}}
       <div class="selectContainer">
-        {{select
-        classBinding='classes'
-        content=content
-        optionValuePath='content.value'
-        optionLabelPath='content.text'
-        value=value}}
+        {{#x-select value=value class=classes}}
+          {{#each content as |option|}}
+            {{#x-option value=option.value}}
+              {{option.text}}
+            {{/x-option}}
+          {{/each}}
+        {{/x-select}}
         {{!--If there is a validator error, show the message--}}
         {{#if errorMessage}}
           <span class="help-block form-error has-input-group-error">{{errorMessage}}</span>
